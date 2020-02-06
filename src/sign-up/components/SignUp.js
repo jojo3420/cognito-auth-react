@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SignUp({
-  email, password, repeatPassword, brand, sns, serial, product,
+  email, password, repeatPassword, sns,
   countryCallingCode, phone, channel, errorCode, errorMessage,
   onClickSignUp, onInputChange }) {
 
@@ -118,13 +118,13 @@ export default function SignUp({
                 variant="outlined"
                 required
                 fullWidth
-                name="product"
-                label="product"
+                name="sns"
+                label="sns"
                 type="text"
-                value={product}
-                id="product"
-                autoComplete="product"
-                onChange={e => onInputChange({title: 'product', value: e.target.value })}
+                value={sns}
+                id="sns"
+                autoComplete="sns"
+                onChange={e => onInputChange({title: 'sns', value: e.target.value })}
 
               />
             </Grid>

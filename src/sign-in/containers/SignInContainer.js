@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
-
 
 
 class SignInContainer extends Component {
@@ -34,7 +32,6 @@ class SignInContainer extends Component {
   render() {
     const { email, password, errorMessage } = this.props;
     const { handleClickSubmit, handleInputChange } = this;
-    const { onClickFindUser, onClickGET } = this;
     return (
       <div>
 
