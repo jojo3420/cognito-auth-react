@@ -5,13 +5,12 @@ import { Button } from "@material-ui/core";
 
 function SignOut({ onClickSignOut }) {
   return (
-    <>
-      <Button
-        onClick={onClickSignOut}
-      >
-        로그아웃
-      </Button>
-    </>
+    <Button
+      variant="contained"
+      onClick={onClickSignOut}
+    >
+      로그아웃
+    </Button>
   );
 }
 

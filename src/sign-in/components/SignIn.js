@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignIn({ email, password, errorMessage, onInputChange, onClickSubmit, custom }) {
+function SignIn({ email, password, errorMessage, onInputChange, onClickSubmit, custom }) {
   const classes = useStyles();
 
   const handleSubmit = (e) => {
@@ -181,3 +181,5 @@ function getLogo(custom) {
     default: return;
   }
 }
+
+export default SignIn;

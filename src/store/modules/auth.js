@@ -67,6 +67,9 @@ export const signOut = createAction(SIGN_OUT, api.signOut);
 
 // 3. state
 const INITIAL_STATE = Map({
+  common: Map({
+    custom: 'brand'
+  }),
   signUp: Map({
     email: '',
     password: '',
@@ -87,7 +90,6 @@ const INITIAL_STATE = Map({
     errorMessage: '',
     oldUser: null,
     alreadySignUp: false,
-    custom: 'brand',
   }),
 
   signIn: Map({

@@ -34,7 +34,6 @@ class SignInContainer extends Component {
     const { handleClickSubmit, handleInputChange } = this;
     return (
       <div>
-
         <SignIn
           email={email}
           password={password}
@@ -55,7 +54,7 @@ const mapStateToProps = (state) => {
     logged: state.auth.getIn(['signIn', 'logged']),
     errorMessage: state.auth.getIn(['signIn', 'errorMessage']),
     oldUser: state.auth.getIn(['signUp', 'oldUser']),
-    custom: state.auth.getIn(['signUp', 'custom']),
+    custom: state.auth.getIn(['common', 'custom']),
   };
 };
 

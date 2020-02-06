@@ -17,24 +17,43 @@ class MainContainer extends Component {
     }
     return null;
   };
+  getCognitoUserProperties = () => {
+    const { custom, cognitoUser } = this.props;
+    if (cognitoUser && cognitoUser.attributes) {
+      let { sub, email:awsEmail, phone_number:phoneNumber  } = cognitoUser.attributes;
+      const awsCustom =  cognitoUser.attributes[`custom:${custom}`];
+      return {
+        sub, awsEmail, phoneNumber, awsCustom
+      };
+    }
+
+    return {};
+  };
+
 
   render() {
-    const {  email } = this.props;
-    const {  getJwtToken } = this;
-
+    const {  email  } = this.props;
+    const {  getJwtToken, getCognitoUserProperties } = this;
+    const{ sub, awsEmail, phoneNumber, awsCustom } =  getCognitoUserProperties();
     return (
       <Main
         email={email}
         jwtToken={getJwtToken()}
+        sub={sub}
+        awsEmail={awsEmail}
+        phoneNumber={phoneNumber}
+        awsCustom={awsCustom}
       />
     );
   }
 }
 
 
+
 const mapStateToProps = (state) => {
   return {
     email: state.auth.getIn(['signIn', 'email']),
+    custom: state.auth.getIn(['common', 'custom']),
     cognitoUser: state.auth.getIn(['signIn', 'cognitoUser']),
   };
 };

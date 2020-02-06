@@ -3,8 +3,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Grid, Box } from "@material-ui/core";
 import Copyright from "common/Copyright";
-import SignOutContainer from "sign-out/containers/SignOutContainer";
+import                           SignOutContainer from "sign-out/containers/SignOutContainer";
+import SimpleTable from "common/SimpleTable";
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,25 +27,46 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Main({ email, jwtToken }) {
+export default function Main({ email, jwtToken, sub, awsEmail, phoneNumber, awsCustom }) {
   if (!jwtToken) {
     console.error('jwtToken is null', jwtToken);
   }
+
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Container component="main" className={classes.main} maxWidth="sm">
+      <Grid
+        container
+        direction="row"
+        justify="flex-end"
+        alignItems="flex-end"
+      >
+        {/* 로그아웃 버튼 */}
+        <Box component="div" m={4}>
+          <Box component="div">{awsEmail}</Box>
+          <Box component="div">{phoneNumber}</Box>
+          <Box component="div">{awsCustom}</Box>
+          <Box component="div">
+            <SignOutContainer />
+          </Box>
+        </Box>
+
+      </Grid>
+      <Container component="main" className={classes.main} fixed>
         <Typography variant="h2" component="h1" gutterBottom>
           HLI Group
         </Typography>
         <Typography variant="h5" component="h2" gutterBottom>
-          {/*{email} 님 환영합니다. <br />*/}
+          {awsEmail} 님 환영합니다. <br />
           {'통합 회원 로그인이 성공 되었습니다.'}
         </Typography>
-        {/* 로그아웃 버튼 */}
-        <SignOutContainer />
-        <Typography variant="body1"></Typography>
+        <Typography variant="body1">
+          <SimpleTable
+            columns={['이메일', '휴대폰', '속성']}
+            rows={[{ awsEmail, phoneNumber, awsCustom, sub}]}
+          />
+        </Typography>
       </Container>
       <footer className={classes.footer}>
         <Container maxWidth="sm">

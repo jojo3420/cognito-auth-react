@@ -125,7 +125,7 @@ const mapStateToProps = (state) => {
     errorMessage: state.auth.getIn(['signUp', 'errorMessage']),
     oldUser: state.auth.getIn(['signUp', 'oldUser']),
     alreadySignUp: state.auth.getIn(['signUp', 'alreadySignUp']),
-    custom: state.auth.getIn(['signUp', 'custom']),
+    custom: state.auth.getIn(['common', 'custom']),
   };
 };
 
