@@ -1,0 +1,58 @@
+{
+  "name": "auth-web-module-aws-cognito",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.8.3",
+    "@material-ui/icons": "^4.5.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "amazon-cognito-identity-js": "^3.2.2",
+    "aws-amplify": "^2.2.2",
+    "aws-amplify-react": "^3.1.3",
+    "axios": "^0.19.2",
+    "country-codes-list": "^1.5.3",
+    "cross-env": "^7.0.0",
+    "dotenv": "^8.2.0",
+    "immutable": "^4.0.0-rc.12",
+    "query-string": "^6.10.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.3.0",
+    "redux": "^4.0.5",
+    "redux-actions": "^2.6.5",
+    "redux-logger": "^3.0.6",
+    "redux-pender": "^2.0.12",
+    "typeface-roboto": "^0.0.75"
+  },
+  "scripts": {
+    "start": "cross-env NODE_PATH=src react-scripts start",
+    "build": "cross-env NODE_PATH=src react-scripts build",
+    "test": "cross-env NODE_PATH=src react-scripts test",
+    "eject": "cross-env NODE_PATH=src react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "prettier": "^1.19.1"
+  },
+  "prettier": {
+    "tabWidth": 2
+  }
+}
