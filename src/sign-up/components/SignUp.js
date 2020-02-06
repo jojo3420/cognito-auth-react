@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SignUp({
-  email, password, repeatPassword, brand, sns, serial, product,
+  email, password, repeatPassword, brand, sns, serial, product, custom,
   countryCallingCode, phone, channel, errorCode, errorMessage,
   onClickSignUp, onInputChange }) {
 
@@ -52,6 +52,7 @@ export default function SignUp({
     e.preventDefault();
     password === repeatPassword ? onClickSignUp() : alert('password 가 일치하지 않습니다.');
   };
+  const customValue = getCustomValue({ custom, brand, sns, serial, product });
 
 
   return (
@@ -116,15 +117,15 @@ export default function SignUp({
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
+                type="text"
                 required
                 fullWidth
-                name="product"
-                label="product"
-                type="text"
-                value={product}
-                id="product"
-                autoComplete="product"
-                onChange={e => onInputChange({title: 'product', value: e.target.value })}
+                name={custom}
+                label={custom}
+                value={customValue}
+                id={custom}
+                autoComplete={custom}
+                onChange={e => onInputChange({title: custom, value: e.target.value })}
 
               />
             </Grid>
@@ -239,4 +240,15 @@ function getCountryCallCodeList({ countryCallingCode: code, onInputChange }) {
     </FormControl>
     </Grid>
   );
+}
+
+
+function getCustomValue({ custom, brand, sns, serial, product }) {
+  switch (custom) {
+    case 'brand': return brand;
+    case 'sns': return sns;
+    case 'serial': return serial;
+    case 'product': return product;
+    default: return '';
+  }
 }

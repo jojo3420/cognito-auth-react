@@ -15,6 +15,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Copyright from "common/Copyright";
 import { deepOrange, green } from '@material-ui/core/colors';
 import main from 'resources/img/main.png';
+import aaa from 'resources/img/aaa.png';
+import bbb from 'resources/img/bbb.png';
+import ccc from 'resources/img/ccc.png';
 import ddd from 'resources/img/ddd.png';
 
 
@@ -67,7 +70,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignIn({ email, password, errorMessage, onInputChange, onClickSubmit }) {
+export default function SignIn({ email, password, errorMessage, onInputChange, onClickSubmit, custom }) {
   const classes = useStyles();
 
   const handleSubmit = (e) => {
@@ -75,7 +78,7 @@ export default function SignIn({ email, password, errorMessage, onInputChange, o
     onClickSubmit();
   };
 
-  const title = 'HLI shopping-mall D';
+  const title = getSignInTitle(custom);
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -83,7 +86,7 @@ export default function SignIn({ email, password, errorMessage, onInputChange, o
       <Grid item xs={false} sm={4} md={7} className={classes.image}/>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <img src={ddd} alt={'brand image'} style={{margin: 15}}/>
+          <img src={getLogo(custom)} alt={'brand image'} style={{margin: 15}}/>
           {/*<Avatar className={classes.avatar}>*/}
           {/*  <LockOutlinedIcon />*/}
           {/*</Avatar>*/}
@@ -157,4 +160,24 @@ export default function SignIn({ email, password, errorMessage, onInputChange, o
       </Grid>
     </Grid>
   );
+}
+
+function getSignInTitle(custom) {
+  switch (custom) {
+    case 'brand': return  'HLI brand site A';
+    case 'sns': return  'web_client_brand_B';
+    case 'serial': return  'HLI cs site - C';
+    case 'product': return  'HLI shopping-mall D';
+    default: return "통합 회원 로그인";
+  }
+}
+
+function getLogo(custom) {
+  switch (custom) {
+    case 'brand': return aaa;
+    case 'sns': return  bbb;
+    case 'serial': return ccc;
+    case 'product': return  ddd;
+    default: return;
+  }
 }

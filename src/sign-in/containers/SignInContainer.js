@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
-
 
 
 class SignInContainer extends Component {
@@ -32,9 +30,8 @@ class SignInContainer extends Component {
 
 
   render() {
-    const { email, password, errorMessage } = this.props;
+    const { email, password, errorMessage, custom } = this.props;
     const { handleClickSubmit, handleInputChange } = this;
-    const { onClickFindUser, onClickGET } = this;
     return (
       <div>
 
@@ -44,6 +41,7 @@ class SignInContainer extends Component {
           onClickSubmit={handleClickSubmit}
           onInputChange={handleInputChange}
           errorMessage={errorMessage}
+          custom={custom}
         />
       </div>
     );
@@ -57,6 +55,7 @@ const mapStateToProps = (state) => {
     logged: state.auth.getIn(['signIn', 'logged']),
     errorMessage: state.auth.getIn(['signIn', 'errorMessage']),
     oldUser: state.auth.getIn(['signUp', 'oldUser']),
+    custom: state.auth.getIn(['signUp', 'custom']),
   };
 };
 

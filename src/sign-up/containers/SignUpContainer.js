@@ -53,8 +53,8 @@ class SignUpContainer extends Component {
   signUpOldUser = async () => {
     // eslint-disable-next-line no-restricted-globals
     const r = confirm('기존 회원정보가 있습니다. 기존 정보를 기반으로 가입하시겠습니까?');
-    const { oldUser  } = this.props;
-    this.handleInputChange({ title: 'brand', value: oldUser['Brand']});
+    const { oldUser, custom  } = this.props;
+    this.handleInputChange({ title: custom, value: oldUser[`${custom.charAt(0).toUpperCase()}${custom.substr(1)}`]});
     r && this.signUp();
   };
 
@@ -79,8 +79,9 @@ class SignUpContainer extends Component {
 
   render() {
     const { handleClickSignUp, handleInputChange } = this;
-    const { email, password, repeatPassword, brand, sns, serial, product,
+    const { email, password, repeatPassword, brand, sns, serial, product, custom,
       channel, countryCallingCode, phone, errorCode, errorMessage,
+
     } = this.props;
     return (
       <div>
@@ -94,6 +95,7 @@ class SignUpContainer extends Component {
           sns={sns}
           serial={serial}
           product={product}
+          custom={custom}
           channel={channel}
           countryCallingCode={countryCallingCode}
           phone={phone}
@@ -123,6 +125,7 @@ const mapStateToProps = (state) => {
     errorMessage: state.auth.getIn(['signUp', 'errorMessage']),
     oldUser: state.auth.getIn(['signUp', 'oldUser']),
     alreadySignUp: state.auth.getIn(['signUp', 'alreadySignUp']),
+    custom: state.auth.getIn(['signUp', 'custom']),
   };
 };
 

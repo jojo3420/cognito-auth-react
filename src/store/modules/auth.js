@@ -87,6 +87,7 @@ const INITIAL_STATE = Map({
     errorMessage: '',
     oldUser: null,
     alreadySignUp: false,
+    custom: 'brand',
   }),
 
   signIn: Map({

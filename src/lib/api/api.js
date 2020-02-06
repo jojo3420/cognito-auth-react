@@ -9,14 +9,17 @@ import { stringify } from 'query-string';
 // } from 'amazon-cognito-identity-js';
 
 
+// API
 const PROXY_URL = process.env.REACT_APP_PROXY_URL;
 const API_SERVER = process.env.REACT_APP_API_SERVER;
 const REQUEST_URL = `${PROXY_URL}${API_SERVER}`;
 
+
+// AWS
 const USER_POOL_ID = process.env.REACT_APP_USER_POOL_ID;
 const ACCESS_KEY =  process.env.REACT_APP_ACCESS_KEY;
 const SECRET_KEY = process.env.REACT_APP_SECRET_KEY;
-console.log(USER_POOL_ID, ACCESS_KEY, SECRET_KEY);
+// console.log(USER_POOL_ID, ACCESS_KEY, SECRET_KEY);
 
 
 const IAM = 'USER_EMAIL_DATA';
