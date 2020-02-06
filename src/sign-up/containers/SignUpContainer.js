@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
 import SignUp from 'sign-up/components/SignUp';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as authActions from 'store/modules/auth';
 import { withRouter } from 'react-router-dom';
-
+import { client } from 'lib/client';
 
 
 class SignUpContainer extends Component {
 
+
   constructor(props) {
     super(props);
-    this.handleInputChange({ title: 'channel' , value: navigator.userAgent.toString() });
+    const clientObj = client();
+    const { browser, system } = clientObj;
+    const { getClientProperty } = this;
+    let clientStr = `OS: ${getClientProperty(system)}  Browser: ${getClientProperty(browser)}`;
+    this.handleInputChange({ title: 'channel' , value: clientStr });
   }
+
+
+  getClientProperty = ( obj ) => {
+    for(let property in obj) {
+      if (obj[property] > 0) {
+        return property;
+      }
+    }
+  };
+
 
   findUserByEmail = async () => {
     const { email, AuthActions } = this.props;
@@ -35,7 +49,7 @@ class SignUpContainer extends Component {
   };
 
 
-  //
+
   signUpOldUser = async () => {
     // eslint-disable-next-line no-restricted-globals
     const r = confirm('기존 회원정보가 있습니다. 기존 정보를 기반으로 가입하시겠습니까?');
@@ -61,12 +75,13 @@ class SignUpContainer extends Component {
     AuthActions.signUpInputChange({ title, value });
   };
 
+
+
   render() {
     const { handleClickSignUp, handleInputChange } = this;
     const { email, password, repeatPassword, brand, sns, serial, product,
       channel, countryCallingCode, phone, errorCode, errorMessage,
     } = this.props;
-
     return (
       <div>
         <SignUp
