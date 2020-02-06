@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
-
 
 
 class SignInContainer extends Component {
@@ -17,7 +15,7 @@ class SignInContainer extends Component {
       const { logged } = this.props;
       if (logged) {
         AuthActions.clearSignInFormFields();
-        history.push('/sign/in/success/');
+        history.push('/sign/in/success');
       }
     } catch (e) {
       console.error(`로그인 실패: ${e.code} - ${e.message}`);
@@ -34,7 +32,6 @@ class SignInContainer extends Component {
   render() {
     const { email, password, errorMessage } = this.props;
     const { handleClickSubmit, handleInputChange } = this;
-    const { onClickFindUser, onClickGET } = this;
     return (
       <div>
 

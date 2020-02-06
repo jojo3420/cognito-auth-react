@@ -35,12 +35,11 @@ class SignUpContainer extends Component {
   };
 
 
-  //
   signUpOldUser = async () => {
     // eslint-disable-next-line no-restricted-globals
     const r = confirm('기존 회원정보가 있습니다. 기존 정보를 기반으로 가입하시겠습니까?');
     const { oldUser  } = this.props;
-    this.handleInputChange({ title: 'brand', value: oldUser['Brand']});
+    this.handleInputChange({ title: 'serial', value: oldUser['Serial']});
     r && this.signUp();
   };
 

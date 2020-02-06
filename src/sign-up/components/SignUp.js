@@ -118,13 +118,13 @@ export default function SignUp({
                 variant="outlined"
                 required
                 fullWidth
-                name="product"
-                label="product"
+                name="serial"
+                label="serial"
                 type="text"
-                value={product}
-                id="product"
-                autoComplete="product"
-                onChange={e => onInputChange({title: 'product', value: e.target.value })}
+                value={serial}
+                id="serial"
+                autoComplete="serial"
+                onChange={e => onInputChange({title: 'serial', value: e.target.value })}
 
               />
             </Grid>
