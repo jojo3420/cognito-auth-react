@@ -15,7 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Copyright from "common/Copyright";
 import { deepOrange, green } from '@material-ui/core/colors';
 import main from 'resources/img/main.png';
-import ddd from 'resources/img/ddd.png';
+import aaa from 'resources/img/aaa.png';
 
 
 const useStyles = makeStyles(theme => ({
@@ -75,7 +75,7 @@ export default function SignIn({ email, password, errorMessage, onInputChange, o
     onClickSubmit();
   };
 
-  const title = 'HLI shopping-mall D';
+  const title = 'HLI brand site A';
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -83,7 +83,7 @@ export default function SignIn({ email, password, errorMessage, onInputChange, o
       <Grid item xs={false} sm={4} md={7} className={classes.image}/>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <img src={ddd} alt={'brand image'} style={{margin: 15}}/>
+          <img src={aaa} alt={'brand image'} style={{margin: 15}}/>
           {/*<Avatar className={classes.avatar}>*/}
           {/*  <LockOutlinedIcon />*/}
           {/*</Avatar>*/}
