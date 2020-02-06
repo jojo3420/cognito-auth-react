@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SignUp from 'sign-up/components/SignUp';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as authActions from 'store/modules/auth';
@@ -35,12 +34,11 @@ class SignUpContainer extends Component {
   };
 
 
-  //
   signUpOldUser = async () => {
     // eslint-disable-next-line no-restricted-globals
     const r = confirm('기존 회원정보가 있습니다. 기존 정보를 기반으로 가입하시겠습니까?');
     const { oldUser  } = this.props;
-    this.handleInputChange({ title: 'brand', value: oldUser['Brand']});
+    this.handleInputChange({ title: 'product', value: oldUser['Product']});
     r && this.signUp();
   };
 
@@ -89,7 +87,6 @@ class SignUpContainer extends Component {
     );
   }
 }
-
 
 
 const mapStateToProps = (state) => {

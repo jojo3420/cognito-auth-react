@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SignUp({
-  email, password, repeatPassword, brand, sns, serial, product,
+  email, password, repeatPassword, product,
   countryCallingCode, phone, channel, errorCode, errorMessage,
   onClickSignUp, onInputChange }) {
 
