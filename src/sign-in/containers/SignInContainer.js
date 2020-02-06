@@ -30,28 +30,6 @@ class SignInContainer extends Component {
     AuthActions.signInInputChange({title, value});
   };
 
-  onClickFindUser = async () => {
-    const { AuthActions } = this.props;
-    try {
-      await AuthActions.getUserByEmail({email: 'spring3420@daum.net'});
-
-    } catch (e) {
-      console.error(e);
-    }
-    const { oldUser } = this.props;
-    console.log("oldUser: ", oldUser);
-  };
-
-  onClickGET = async () => {
-    try {
-      const r = await axios.get('/users');
-      console.log(r);
-    } catch (e) {
-      console.error(e);
-    }
-
-  };
-
 
   render() {
     const { email, password, errorMessage } = this.props;
@@ -66,8 +44,6 @@ class SignInContainer extends Component {
           onClickSubmit={handleClickSubmit}
           onInputChange={handleInputChange}
           errorMessage={errorMessage}
-          onClickFindUser={onClickFindUser}
-          onClickGET={onClickGET}
         />
       </div>
     );

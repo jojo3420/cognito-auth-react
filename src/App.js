@@ -9,7 +9,11 @@ import PageNotFoundPage from 'pages/PageNotFoundPage';
 import SignInSuccessPage from 'pages/SignInSuccessPage';
 import SignUpSuccessPage from 'pages/SignUpSuccessPage';
 import SignUpConfirmPage from 'pages/SignUpConfirmPage';
+import dotenv from 'dotenv';
 
+
+
+dotenv.config();
 
 function App() {
   return (
@@ -22,7 +26,7 @@ function App() {
         <Route path="/sign/up/success" component={SignUpSuccessPage} />
         <Route path="/sign/up/confirm" component={SignUpConfirmPage} />
         <Route path="/reset/password" component={ResetPasswordPage} />
-        {/*<Route component={PageNotFoundPage} />*/}
+        <Route component={PageNotFoundPage} />
       </Switch>
     </>
   );

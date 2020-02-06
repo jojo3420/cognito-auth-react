@@ -1,18 +1,25 @@
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import { stringify } from 'query-string';
-// import AWSCognito from 'amazon-cognito-identity-js';
 // import { AmazonCognitoIdentity } from 'amazon-cognito-identity-js';
-import {
-  CognitoUserPool,
-  CognitoUserAttribute,
-  CognitoUser,
-} from 'amazon-cognito-identity-js';
+// import {
+//   CognitoUserPool,
+//   CognitoUserAttribute,
+//   CognitoUser,
+// } from 'amazon-cognito-identity-js';
+
+
+console.log('API_SERVER', process.env.REACT_APP_API_SERVER);
+console.log('PROXY_URL', process.env.REACT_APP_PROXY_URL);
+
+
+const PROXY_URL = process.env.REACT_APP_PROXY_URL;
+const API_SERVER = process.env.REACT_APP_API_SERVER;
+const REQUEST_URL = `${PROXY_URL}${API_SERVER}`;
 
 
 const IAM = 'USER_EMAIL_DATA';
-const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
-const API_SERVER = 'http://ec2-13-124-248-80.ap-northeast-2.compute.amazonaws.com:4000';
+
 
 export async function signIn({ email: username, password }) {
   // console.log({username, password});
@@ -76,8 +83,7 @@ export function signOut() {
 }
 
 export function getUserByEmail({ email }) {
-  const url = `${PROXY_URL}${API_SERVER}/users/find?${stringify({email})}`;
-  // /users/find?email=spring3420@daum.net
+  const url = `${REQUEST_URL}/users/find?${stringify({email})}`;
   return axios.get(url);
 }
 
@@ -94,6 +100,7 @@ export function readLocalStorage() {
 }
 //
 export function userPoolTest () {
+
 //   // AmazonCognitoIdentity.config.region = 'ap-northeast-2';
 //   // const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 //   // console.log('userPool: ', userPool);

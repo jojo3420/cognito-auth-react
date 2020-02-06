@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignIn({ email, password, errorMessage, onInputChange, onClickSubmit, onClickFindUser, onClickGET}) {
+export default function SignIn({ email, password, errorMessage, onInputChange, onClickSubmit }) {
   const classes = useStyles();
 
   const handleSubmit = (e) => {
@@ -151,18 +151,6 @@ export default function SignIn({ email, password, errorMessage, onInputChange, o
             </Grid>
             <Box mt={5}>
               <Copyright/>
-              <Button
-                type="button"
-                onClick={onClickFindUser}
-              >
-                find user
-              </Button>
-              <Button
-                type="button"
-                onClick={onClickGET}
-              >
-                get
-              </Button>
             </Box>
           </form>
         </div>
