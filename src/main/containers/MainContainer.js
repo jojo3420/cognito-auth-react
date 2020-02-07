@@ -56,7 +56,7 @@ class MainContainer extends Component {
   }
 
   render() {
-    const { email, users } = this.props;
+    const { email, users, selectOption } = this.props;
     const {
       getJwtToken,
       getCognitoUserProperties,
@@ -82,6 +82,7 @@ class MainContainer extends Component {
         onListUsersByPool={onListUsersByPool}
         onSelectChange={handleSelectChange}
         onInputChange={handleInputChange}
+        selectOption={selectOption}
       />
     );
   }
@@ -94,7 +95,8 @@ const mapStateToProps = state => {
     cognitoUser: state.auth.getIn(["signIn", "cognitoUser"]),
     users: state.auth.getIn(["userPool", "users"]),
     termTitle: state.auth.getIn(["userPool", "termTitle"]),
-    termValue: state.auth.getIn(["userPool", "termValue"])
+    termValue: state.auth.getIn(["userPool", "termValue"]),
+    selectOption: state.auth.getIn(["common", "selectOption"]),
   };
 };
 

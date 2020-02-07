@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SearchBar({
+	selectOption,
 	termTitle,
 	termValue,
 	onSelectChange,
@@ -44,6 +45,7 @@ function SearchBar({
 
 	const handleSubmit = e => {
 		e.preventDefault();
+
 		onListUsersByPool();
 	};
 
@@ -55,22 +57,30 @@ function SearchBar({
 						<form onSubmit={handleSubmit}>
 							<FormControl className={classes.formControl}>
 								<Select
-									labelId="demo-simple-select-label"
-									id="demo-simple-select"
+									labelId='demo-simple-select-label'
+									id='demo-simple-select'
 									value={termTitle}
 									onChange={e => onSelectChange({ value: e.target.value })}
 								>
-									<MenuItem value={'email'}>이메일</MenuItem>
-									<MenuItem value={'phoneNumber'}>휴대폰</MenuItem>
+									{selectOption.map((option, idx) => {
+										return (
+											<MenuItem key={option + idx} value={option.value}>
+												{option.title}
+											</MenuItem>
+										);
+									})}
+
+									{/*<MenuItem value={'phone_number'}>휴대폰</MenuItem>*/}
 								</Select>
 							</FormControl>
 							<TextField
 								className={classes.input}
-								id="standard-basic"
-								label="입력"
+								id='standard-basic'
+								label='입력'
+								value={termValue}
 								onChange={e => onInputChange({ value: e.target.value })}
 							/>
-							<Button variant="contained" color="primary" type="submit">
+							<Button variant='contained' color='primary' type='submit'>
 								검색
 							</Button>
 						</form>
