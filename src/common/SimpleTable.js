@@ -1,15 +1,20 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import {
-  Hidden, Table, TableBody, TableCell, TableContainer,
-  TableHead, TableRow, Paper,
-} from '@material-ui/core';
-
+  Hidden,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper
+} from "@material-ui/core";
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
-  },
+    minWidth: 650
+  }
 });
 
 // function createData(name, calories, fat, carbs, protein) {
@@ -35,19 +40,37 @@ export default function SimpleTable({ columns, rows }) {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            {columns.map(column => <TableCell align="center">{column}</TableCell>)}
+            {columns.map((column, idx) => (
+              <TableCell key={`${column}${idx}`} align="center">
+                {column}
+              </TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow key={row.sub}>
+            <TableRow key={row.get("Username")}>
               <TableCell component="th" scope="row" align="center">
-                {row.awsEmail}
+                {/*이메일*/}
+                {row.get("Attributes").getIn([5, "Value"])}
               </TableCell>
-              <TableCell align="center">{row.phoneNumber}</TableCell>
-              <TableCell align="center">{row.awsCustom}</TableCell>
+              <TableCell align="center">
+                {/*폰넘버*/}
+                {row.get("Attributes").getIn([3, "Value"])}
+              </TableCell>
+              <TableCell align="center">
+                {/*{속성}*/}
+                {row.get("Attributes").getIn([4, "Value"])}
+              </TableCell>
+              <TableCell align="center">{row.get("UserStatus")}</TableCell>
+              <TableCell align="center">
+                {row.get("UserCreateDate").toString()}
+              </TableCell>
               <Hidden xsUp>
-                <TableCell align="center">{row.sub}</TableCell>
+                {/* channel */}
+                <TableCell align="center">
+                  {row.get("Attributes").getIn([6, "Value"])}
+                </TableCell>
               </Hidden>
             </TableRow>
           ))}
