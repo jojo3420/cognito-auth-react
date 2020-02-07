@@ -38,17 +38,32 @@ class MainContainer extends Component {
   };
 
   onListUsersByPool = async () => {
+    const { AuthActions, termTitle, termValue } = this.props;
+    await AuthActions.listUsersByPool({ termTitle, termValue });
+  };
+
+  handleSelectChange = ({ value }) => {
     const { AuthActions } = this.props;
-    await AuthActions.listUsersByPool();
+    AuthActions.searchSelectChange({ termTitle: value });
+  };
+  handleInputChange = ({ value }) => {
+    const { AuthActions } = this.props;
+    AuthActions.searchInputChange({ termValue: value });
   };
 
   componentDidMount() {
-    this.onListUsersByPool();
+    this.onListUsersByPool({});
   }
 
   render() {
     const { email, users } = this.props;
-    const { getJwtToken, getCognitoUserProperties } = this;
+    const {
+      getJwtToken,
+      getCognitoUserProperties,
+      onListUsersByPool,
+      handleSelectChange,
+      handleInputChange
+    } = this;
     const {
       sub,
       awsEmail,
@@ -64,6 +79,9 @@ class MainContainer extends Component {
         phoneNumber={phoneNumber}
         awsCustom={awsCustom}
         users={users}
+        onListUsersByPool={onListUsersByPool}
+        onSelectChange={handleSelectChange}
+        onInputChange={handleInputChange}
       />
     );
   }
@@ -74,7 +92,9 @@ const mapStateToProps = state => {
     email: state.auth.getIn(["signIn", "email"]),
     custom: state.auth.getIn(["common", "custom"]),
     cognitoUser: state.auth.getIn(["signIn", "cognitoUser"]),
-    users: state.auth.getIn(["userPool", "users"])
+    users: state.auth.getIn(["userPool", "users"]),
+    termTitle: state.auth.getIn(["userPool", "termTitle"]),
+    termValue: state.auth.getIn(["userPool", "termValue"])
   };
 };
 

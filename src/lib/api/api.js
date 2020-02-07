@@ -108,16 +108,19 @@ export function readLocalStorage() {
   localStorage.getItem(IAM);
 }
 //
-export function listUsersByPool() {
+export function listUsersByPool({ termTitle = "", termValue = "" }) {
+  const filtering = termValue && `${termTitle} ^= "${termValue}"`;
+  console.log(filtering);
   const params = {
-    UserPoolId: USER_POOL_ID /* required */
+    UserPoolId: USER_POOL_ID, // 필수 값
+    Filter: filtering || "",
+    Limit: 10
     // AttributesToGet: [
     //   'STRING_VALUE',
     //   /* more items */
     // ],
-    // Filter: 'STRING_VALUE',
-    // Limit: 'NUMBER_VALUE',
-    // PaginationToken: 'STRING_VALUE'
+
+    // PaginationToken: "CAISsAIIARKJAggDEoQCADBvpYbVH…q5XQ33daT"
   };
 
   return new Promise((resolve, reject) => {

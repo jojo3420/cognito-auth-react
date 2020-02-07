@@ -7,6 +7,7 @@ import { Grid, Box } from "@material-ui/core";
 import Copyright from "common/Copyright";
 import SignOutContainer from "sign-out/containers/SignOutContainer";
 import SimpleTable from "common/SimpleTable";
+import SearchBar from "common/SearchBar";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,7 +36,12 @@ export default function Main({
   awsEmail,
   phoneNumber,
   awsCustom,
-  users /* immutable list  */
+  users,
+  termTitle,
+  termValue,
+  onListUsersByPool,
+  onSelectChange,
+  onInputChange
 }) {
   if (!jwtToken) {
     console.error("jwtToken is null", jwtToken);
@@ -57,14 +63,17 @@ export default function Main({
         </Box>
       </Grid>
       <Container component="main" className={classes.main} fixed>
-        <Typography variant="h2" component="h1" gutterBottom>
-          HLI Group
-        </Typography>
         <Typography variant="h5" component="h2" gutterBottom>
           {awsEmail} 님 환영합니다. <br />
-          {"통합 회원 로그인이 성공 되었습니다."}
         </Typography>
         <Typography variant="body1">
+          <SearchBar
+            termTitle={termTitle}
+            termValue={termValue}
+            onSelectChange={onSelectChange}
+            onInputChange={onInputChange}
+            onListUsersByPool={onListUsersByPool}
+          />
           <SimpleTable
             columns={["이메일", "휴대폰", "속성", "가입상태", "가입일"]}
             rows={users}

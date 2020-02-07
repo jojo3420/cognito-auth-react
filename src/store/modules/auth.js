@@ -25,6 +25,10 @@ const LIST_USERS_BY_POOL = "app/auth/LIST_USERS_BY_POOL";
 // 1.3 Sign out
 const SIGN_OUT = "app/auth/SIGN_OUT";
 
+// UserPool
+const SEARCH_SELECT_CHANGE = "app/auth/SEARCH_SELECT_CHANGE";
+const SEARCH_INPUT_CHANGE = "app/auth/SEARCH_INPUT_CHANGE";
+
 // 2. ActionCreator
 // Sign In
 export const signIn = createAction(SIGN_IN, api.signIn);
@@ -60,6 +64,10 @@ export const listUsersByPool = createAction(
 
 // sign out
 export const signOut = createAction(SIGN_OUT, api.signOut);
+
+// userPool
+export const searchSelectChange = createAction(SEARCH_SELECT_CHANGE);
+export const searchInputChange = createAction(SEARCH_INPUT_CHANGE);
 
 // 3. state
 const INITIAL_STATE = Map({
@@ -103,8 +111,11 @@ const INITIAL_STATE = Map({
   }),
   userPool: Map({
     users: List([]),
+    PaginationToken: "",
     errorCode: "",
-    errorMsg: ""
+    errorMsg: "",
+    termTitle: "",
+    termValue: ""
   })
 });
 
@@ -134,6 +145,14 @@ const reducer = handleActions(
         .setIn(["signIn", "code"], "")
         .setIn(["signIn", "sendCodeMode"], false)
         .setIn(["signIn", "changed"], false);
+    },
+    [SEARCH_SELECT_CHANGE]: (state, action) => {
+      const { termTitle } = action.payload;
+      return state.setIn(["userPool", "termTitle"], termTitle);
+    },
+    [SEARCH_INPUT_CHANGE]: (state, action) => {
+      const { termValue } = action.payload;
+      return state.setIn(["userPool", "termValue"], termValue);
     }
   },
   INITIAL_STATE
@@ -144,8 +163,10 @@ export default applyPenders(reducer, [
   {
     type: LIST_USERS_BY_POOL,
     onSuccess: (state, action) => {
-      const { Users } = action.payload;
-      return state.setIn(["userPool", "users"], fromJS(Users));
+      const { Users, PaginationToken } = action.payload;
+      return state
+        .setIn(["userPool", "users"], fromJS(Users))
+        .setIn(["userPool", "PaginationToken"], PaginationToken);
     },
     onFailure: (state, action) => {
       const { code, message } = action.payload;
