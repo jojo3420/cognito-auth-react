@@ -37,9 +37,14 @@ class MainContainer extends Component {
     return {};
   };
 
-  onListUsersByPool = async () => {
+  getUsersAllByPool = async () => {
     const { AuthActions, termTitle, termValue } = this.props;
     await AuthActions.listUsersByPool({ termTitle, termValue });
+  };
+
+  onListUsersByPool = async () => {
+    const { AuthActions, termTitle, termValue } = this.props;
+    termTitle && termValue && await AuthActions.listUsersByPool({ termTitle, termValue });
   };
 
   handleSelectChange = ({ value }) => {
@@ -52,7 +57,8 @@ class MainContainer extends Component {
   };
 
   componentDidMount() {
-    this.onListUsersByPool({});
+    // get all list
+    this.getUsersAllByPool();
   }
 
   render() {
